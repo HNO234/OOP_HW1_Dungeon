@@ -13,7 +13,7 @@ protected:
     int money;
 public:
     GameCharacter();
-    GameCharacter(string aName, int aHP, int amaxHP,
+    GameCharacter(string aName, string aTag, int aHP, int amaxHP,
         int anAttack, int aDefense, int amoney);
 
     /* Setters & Getters */

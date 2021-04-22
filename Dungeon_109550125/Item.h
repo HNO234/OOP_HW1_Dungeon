@@ -1,6 +1,11 @@
 #ifndef ITEM_H_INCLUDED
 #define ITEM_H_INCLUDED
 
+#include "Object.h"
+#include <string>
+
+using string  = std::string;
+
 class Item : public Object {
 protected:
     int HP;
