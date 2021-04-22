@@ -1,26 +1,24 @@
 #ifndef OBJECT_H_INCLUDED
 #define OBJECT_H_INCLUDED
 
-#include <iostream>
 #include <string>
-#include <vector>
 
 using string = std::string;
 
 class Object {
-    private:
-        string name;
-        string tag;
-    public:
-        Object();
-        Object(string,string);
+protected:
+    string name;
+    string tag;
+public:
+    Object();
+    Object(string aName,string aTag);
 
-        virtual bool triggerEvent(Object*) = 0;
+    virtual void triggerEvent(Object* player) = 0;
 
-        void setName(string);
-        void setTag(string);
-        string getName();
-        string getTag();
+    void setName(string aName);
+    void setTag(string aTag);
+    string getName();
+    string getTag();
 };
 
 #endif // OBJECT_H_INCLUDED
