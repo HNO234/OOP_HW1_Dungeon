@@ -2,22 +2,31 @@
 #define GAMECHARACTER_H_INCLUDED
 
 #include "Object.h"
+#include <string>
 
 using string = std::string;
 
-class Gamecharacter : public Object {
+class GameCharacter : public Object {
 protected:
-    int
+    int HP,maxHP;
+    int attack, defense;
+    int money;
 public:
-    Object();
-    Object(string aName,string aTag);
+    GameCharacter();
+    GameCharacter(string aName, int aHP, int amaxHP,
+        int anAttack, int aDefense, int amoney);
 
-    virtual void triggerEvent(Object* player) = 0;
-
-    void setName(string aName);
-    void setTag(string aTag);
-    string getName();
-    string getTag();
+    /* Setters & Getters */
+    int getHP() { return HP; }
+    int getmaxHP() { return maxHP; }
+    int getMoney() { return money; }
+    int getAttack() { return attack; }
+    int getDefense() { return defense; }
+    void setHP(int aHP) { HP = aHP; }
+    void setmaxHP(int amaxHP) { maxHP = amaxHP; }
+    void setMoney(int amoney) { money = amoney; }
+    void setAttack(int anAttack) { attack = anAttack; }
+    void setDefense(int aDefense) { defense = aDefense; }
 };
 
 #endif // GAMECHARACTER_H_INCLUDED

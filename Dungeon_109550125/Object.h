@@ -13,12 +13,13 @@ public:
     Object();
     Object(string aName,string aTag);
 
-    virtual void triggerEvent(Object* player) = 0;
-
+    /* Setters & Getters */
     void setName(string aName);
     void setTag(string aTag);
     string getName();
     string getTag();
+
+    virtual bool triggerEvent(Object* player) = 0;
 };
 
 #endif // OBJECT_H_INCLUDED

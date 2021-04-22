@@ -6,8 +6,6 @@ Object::Object():
 Object::Object(string aName, string aTag):
     name(aName),tag(aTag) {}
 
-virtual void Object::triggerEvent(Object* player) = 0;
-
 void Object::setName(string aName) {
     name = aName;
 }
@@ -23,3 +21,5 @@ string Object::getName() {
 string Object::getTag() {
     return tag;
 }
+
+virtual bool Object::triggerEvent(Object* player) = 0;
