@@ -1,14 +1,13 @@
-#ifndef OBJECT_H_INCLUDED
-#define OBJECT_H_INCLUDED
+#ifndef GAMECHARACTER_H_INCLUDED
+#define GAMECHARACTER_H_INCLUDED
 
-#include <string>
+#include "Object.h"
 
 using string = std::string;
 
-class Object {
+class Gamecharacter : public Object {
 protected:
-    string name;
-    string tag;
+    int
 public:
     Object();
     Object(string aName,string aTag);
@@ -21,4 +20,4 @@ public:
     string getTag();
 };
 
-#endif // OBJECT_H_INCLUDED
+#endif // GAMECHARACTER_H_INCLUDED
