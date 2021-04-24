@@ -17,3 +17,10 @@ Player(string aName, int anAttack, int aDefense, int amoney):
 void Player::putItem (Item obtain) {
     inventory.push_back(obtain);
 }
+
+void showStatus () {
+    cout << "[" << name << "]\n";
+    cout << "> Health: " << HP << '/' << maxHP <<'\n';
+    cout << "> Attack: " << attack << '\n';
+    cout << "> Defense: " << defense << '\n';
+}

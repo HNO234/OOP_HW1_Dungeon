@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <random>
+#include <chrono>
 #include "Player.h"
 #include "Monster.h"
 #include "NPC.h"
@@ -12,14 +14,17 @@
 using namespace std;
 
 class Dungeon {
+    using pointerofRoom = Room*;
 private:
     Player player;
-    vector<Room> rooms;
+    pointerofRoom *rooms;
 public:
     Dungeon();
 
     /* Create a new player, and give him/her basic status */
     void createPlayer();
+
+    void linkingRooms();
 
     /* Create a map, which include several different rooms */
     void createMap();
@@ -27,18 +32,15 @@ public:
     /* Deal with player's moving action */
     void handleMovement();
 
-    /* Deal with player's interaction with objects in that room */
-    void handleEvent(Object*);
-
     /* Deal with all game initial setting
     Including create player, create map etc.  */
-    void startGame();
+    void initGame();
 
     /* Deal with the player's action.
      including showing the action list
      that player can do at that room
     and dealing with player's input   */
-    void chooseAction(vector<Object*>);
+    void chooseAction();
 
     /* Check whether the game should end or not.
     Including player victory, or he/she dead */

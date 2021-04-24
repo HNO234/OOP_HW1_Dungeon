@@ -17,6 +17,8 @@ public:
     Item(string aName, int aHP,
         int anAttack, int aDefense, int aPrice);
 
+    friend bool operator ==(const Item &lhs, const Item &rhs);
+
     /* Setters & Getters */
     int getHP() { return HP; }
     int getAttack() { return attack; }

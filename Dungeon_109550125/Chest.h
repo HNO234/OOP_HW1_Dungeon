@@ -1,5 +1,5 @@
-#ifndef NPC_H_INCLUDED
-#define NPC_H_INCLUDED
+#ifndef CHEST_H_INCLUDED
+#define CHEST_H_INCLUDED
 
 #include <string>
 #include "GameCharacter.h"
@@ -7,14 +7,13 @@
 #include "Item.h"
 
 using string = std::string;
-using vector = std::vector;
 
-class NPC: public GameCharacter {
+class Chest: public GameCharacter {
 private:
     string script;
 public:
-    NPC();
-    NPC(string aName, string aScript);
+    Chest();
+    Chest(string aName, string aScript);
 
     /* Setter & Getter */
     void setScript(string aScript) { script = aScript; }
@@ -24,4 +23,4 @@ public:
 };
 
 
-#endif // NPC_H_INCLUDED
+#endif // CHEST_H_INCLUDED

@@ -12,3 +12,7 @@ bool Item::triggerEvent(Object* player) {
     //...
     return true;
 }
+
+bool operator ==(const Item &lhs, const Item &rhs) {
+    return lhs.name==rhs.name;
+}
