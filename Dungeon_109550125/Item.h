@@ -2,6 +2,7 @@
 #define ITEM_H_INCLUDED
 
 #include "Object.h"
+#include "Player.h"
 #include <string>
 
 using string  = std::string;

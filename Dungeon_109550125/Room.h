@@ -19,10 +19,15 @@ private:
     GameCharacter* resident;
 public:
     Room();
-    Room(int roomType);
+    Room(int aroomType);
 
     /* Setters & Getters */
-    
+    void setRoomType (int aRoomType) { roomType = aRoomType; }
+    void setGameCharacter(GameCharacter* aResident) { resident = aResident; }
+    int getRoomType () { return roomType; }
+    GameCharacter* getResident () { return resident; }
+
+
 }
 
 #endif //ROOM_H_INCLUDED
