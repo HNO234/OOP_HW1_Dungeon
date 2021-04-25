@@ -1,13 +1,12 @@
 #ifndef ROOM_H_INCLUDED
-#defile ROOM_H_INCLUDED
-#include "Item.h"
+#define ROOM_H_INCLUDED
 #include "GameCharacter.h"
 #include <string>
 #include <vector>
 #include <algorithm>
 
 using string = std::string;
-using vector = std::vector;
+#define vector std::vector
 
 class Room {
 private:
@@ -15,7 +14,6 @@ private:
     Room* downRoom;
     Room* leftRoom;
     Room* rightRoom;
-    vector<Item> objects;
     /* 0: Ordinary Room,
     1: Room of chest
     2: Room of monster
@@ -39,9 +37,6 @@ public:
     Room* getdownRoom () { return downRoom; }
     Room* getleftRoom () { return leftRoom; }
     Room* getrightRoom () { return rightRoom; }
-
-    void putItem(Item item) { objects.push_back(item); }
-    void removeItem(Item item);
-}
+};
 
 #endif //ROOM_H_INCLUDED

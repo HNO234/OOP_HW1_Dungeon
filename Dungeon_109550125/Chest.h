@@ -4,7 +4,6 @@
 #include <string>
 #include "GameCharacter.h"
 #include "Player.h"
-#include "Item.h"
 
 using string = std::string;
 
@@ -19,7 +18,7 @@ public:
     void setScript(string aScript) { script = aScript; }
     string getScript() { return script; }
 
-    bool triggerEvent(Object*);
+    bool triggerEvent(Object* player);
 };
 
 

@@ -21,5 +21,3 @@ string Object::getName() {
 string Object::getTag() {
     return tag;
 }
-
-virtual bool Object::triggerEvent(Object* player) = 0;

@@ -8,21 +8,22 @@
 #include <iostream>
 
 using string = std::string;
-using vector = std::vector;
+#define vector std::vector
 
 class Player : public GameCharacter {
 protected:
-    vector<Item> inventory;
+    Room *currentRoom;
     Room *previousRoom;
 public:
     Player();
     Player(string aName, int anAttack, int aDefense, int aMoney);
 
     /* Setters & Getters */
+    void setCurrentRoom(Room* aCurrentRoom) { currentRoom = aCurrentRoom; }
     void setPreviousRoom(Room* aPreviousRoom) { previousRoom = aPreviousRoom; }
+    Room* getCurrentRoom() { return currentRoom; }
     Room* getPreviousRoom() { return previousRoom; }
 
-    void putItem (Item obtain);
     void showStatus ();
     bool triggerEvent(Object* player) { return true; }
 };

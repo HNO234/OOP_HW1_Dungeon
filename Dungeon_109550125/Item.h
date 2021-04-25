@@ -2,7 +2,6 @@
 #define ITEM_H_INCLUDED
 
 #include "Object.h"
-#include "Player.h"
 #include <string>
 
 using string  = std::string;
@@ -29,7 +28,7 @@ public:
     void setAttack(int anAttack) { attack = anAttack; }
     void setDefense(int aDefense) { defense = aDefense; }
 
-    bool triggerEvent(Object* player);
+    bool triggerEvent(Object* player) { return true; }
 };
 
 #endif // ITEM_H_INCLUDED

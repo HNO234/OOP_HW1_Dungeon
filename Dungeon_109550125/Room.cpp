@@ -7,7 +7,6 @@ Room::Room():roomType(0) {
     leftRoom = nullptr;
     rightRoom = nullptr;
     resident = nullptr;
-    objects.clear();
 }
 
 Room::Room(int aRoomType):roomType(aRoomType) {
@@ -16,12 +15,4 @@ Room::Room(int aRoomType):roomType(aRoomType) {
     leftRoom = nullptr;
     rightRoom = nullptr;
     resident = nullptr;
-    objects.clear();
-}
-
-void Room::removeItem(Item item) {
-    if (count(objects.begin(),objects.end(),item)) {
-        remove(objects.begin(),objects.end(),item);
-        objects.pop_back();
-    }
 }

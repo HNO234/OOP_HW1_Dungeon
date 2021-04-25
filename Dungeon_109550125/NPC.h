@@ -2,12 +2,13 @@
 #define NPC_H_INCLUDED
 
 #include <string>
+#include <vector>
+#include <cctype>
 #include "GameCharacter.h"
 #include "Player.h"
-#include "Item.h"
 
 using string = std::string;
-using vector = std::vector;
+#define vector std::vector
 
 class NPC: public GameCharacter {
 private:
@@ -20,7 +21,7 @@ public:
     void setScript(string aScript) { script = aScript; }
     string getScript() { return script; }
 
-    bool triggerEvent(Object*);
+    bool triggerEvent(Object* player);
 };
 
 

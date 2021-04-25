@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "Monster.h"
 #include "NPC.h"
+#include "Chest.h"
 #include "Room.h"
 
 using namespace std;
