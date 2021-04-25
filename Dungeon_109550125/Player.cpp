@@ -17,4 +17,6 @@ void Player::showStatus () {
     cout << "> Health: " << HP << '/' << maxHP <<'\n';
     cout << "> Attack: " << attack << '\n';
     cout << "> Defense: " << defense << '\n';
+    cout << "> Money: " << money << '\n';
+    cout << '\n';
 }

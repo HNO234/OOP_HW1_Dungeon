@@ -6,6 +6,7 @@
 #include <string>
 #include <algorithm>
 #include <vector>
+#include <iostream>
 
 using string = std::string;
 #define vector std::vector
@@ -33,7 +34,7 @@ public:
     void setAttack(int anAttack) { attack = anAttack; }
     void setDefense(int aDefense) { defense = aDefense; }
 
-    bool isDead() { return HP > 0; }
+    bool isDead() { return HP <= 0; }
     void putItem (Item obtain);
     void removeItem (Item discard);
 };

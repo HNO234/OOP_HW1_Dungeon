@@ -20,6 +20,6 @@ public:
     string getTag();
 
     virtual bool triggerEvent(Object* player) = 0;
-};
+};  
 
 #endif // OBJECT_H_INCLUDED

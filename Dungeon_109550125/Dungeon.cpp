@@ -1,4 +1,5 @@
 #include "Dungeon.h"
+#include <typeinfo>
 using namespace std;
 
 Dungeon::Dungeon() {
@@ -19,6 +20,11 @@ void Dungeon::linkingRooms() {
 
     for (int i=0;i<4;i++)
         for (int j=0;j<3;j++) {
+            rooms[i][j] = Room();
+        }
+
+    for (int i=0;i<4;i++)
+        for (int j=0;j<3;j++) {
             if (i-1>=0) rooms[i][j].setupRoom(&rooms[i-1][j]);
             if (i+1<4) rooms[i][j].setdownRoom(&rooms[i+1][j]);
             if (j-1>=0) rooms[i][j].setleftRoom(&rooms[i][j-1]);
@@ -33,8 +39,8 @@ void Dungeon::createMap() {
     //Create Boss
     {
         rooms[3][2].setRoomType(2);
-        Monster boss = Monster("Boss",1000,50,100,200000);
-        rooms[3][2].setGameCharacter(&boss);
+        Monster* boss = new Monster("Boss",1000,50,100,200000);
+        rooms[3][2].setGameCharacter(boss);
     }
     //Create Slime
     {
@@ -46,8 +52,8 @@ void Dungeon::createMap() {
 
             slimeCnt++;
             rooms[X][Y].setRoomType(2);
-            Monster slime = Monster("Slime",10,5,0,100);
-            rooms[X][Y].setGameCharacter(&slime);
+            Monster* slime = new Monster("Slime",10,5,0,100);
+            rooms[X][Y].setGameCharacter(slime);
         }
     }
     //Create Room of chest
@@ -60,12 +66,12 @@ void Dungeon::createMap() {
 
             chestCnt++;
             rooms[X][Y].setRoomType(1);
-            Chest chest = Chest("Chests","Which chest would you like to open?");
-            rooms[X][Y].setGameCharacter(&chest);
+            Chest* chest = new Chest("Chests","Which chest would you like to open?");
+            rooms[X][Y].setGameCharacter(chest);
 
-            chest.putItem(Item("Sword 1",0,50,0,0));
-            chest.putItem(Item("Snake",0,-10,0,0));
-            chest.putItem(Item("Money",0,0,0,-(rng()%500 + 100) ));
+            chest->putItem(Item("Sword 1",0,50,0,0));
+            chest->putItem(Item("Snake",0,-10,0,0));
+            chest->putItem(Item("Money",0,0,0,-(rng()%500 + 100) ));
         }
     }
     //Create Room of NPC
@@ -78,25 +84,26 @@ void Dungeon::createMap() {
 
             NPCCnt++;
             rooms[X][Y].setRoomType(3);
-            NPC npc = NPC("Shop","What would like to buy?");
-            rooms[X][Y].setGameCharacter(&npc);
+            NPC* npc = new NPC("Shop","What would like to buy?");
+            rooms[X][Y].setGameCharacter(npc);
 
 
-            npc.putItem(Item("Sword 1 (Attack +50, 50 dollars)",0,50,0,50));
-            npc.putItem(Item("Sword 2 (Attack +200, 150 dollars)",0,200,0,150));
-            npc.putItem(Item("Shield (Defense +50, 50 dollars)",0,0,50,50));
-            npc.putItem(Item("Fruit 1 (HP +10, 5 dollars)",10,0,0,5));
-            npc.putItem(Item("Fruit 2 (HP becomes full, 100 dollars)",1000000,0,0,100));
+            npc->putItem(Item("Sword 1 (Attack +50, 50 dollars)",0,50,0,50));
+            npc->putItem(Item("Sword 2 (Attack +200, 150 dollars)",0,200,0,150));
+            npc->putItem(Item("Shield (Defense +50, 50 dollars)",0,0,50,50));
+            npc->putItem(Item("Fruit 1 (HP +10, 5 dollars)",10,0,0,5));
+            npc->putItem(Item("Fruit 2 (HP becomes full, 100 dollars)",1000000,0,0,100));
         }
     }
 }
 
 bool Dungeon::checkGameLogic() {
+    //cout<<player.getHP()<<'\n';
     if (player.getHP() <= 0) {
         cout<< "You lose. :(\n";
         return false;
     }
-    if (rooms[3][2].getResident()->isDead()) {
+    if (rooms[3][2].getResident()->getHP() <= 0) {
         cout<< "You win. :D\n";
         return false;
     }
@@ -119,16 +126,17 @@ void Dungeon::handleMovement() {
     while (true) {
         cout<<script;
         char action; cin >> action;
+        cout<<'\n';
         if (cin.fail()) {
-            cout<<"Invalid option.\n\n";
+            cout<<"\e[0;31mInvalid option.\n\n\e[0m";
             continue;
         }
         bool valid = true;
         switch (action) {
             case 'A':
             case 'a':
-                if (!currentRoom->getleftRoom()) {
-                    cout<<"Invalid option.\n\n";
+                if (!currentRoom->getupRoom()) {
+                    cout<<"\e[0;31mInvalid option.\n\n\e[0m";
                     valid = false;
                 }
                 else {
@@ -138,8 +146,8 @@ void Dungeon::handleMovement() {
                 break;
             case 'B':
             case 'b':
-                if (!currentRoom->getrightRoom()) {
-                    cout<<"Invalid option.\n\n";
+                if (!currentRoom->getdownRoom()) {
+                    cout<<"\e[0;31mInvalid option.\n\n\e[0m";
                     valid = false;
                 }
                 else {
@@ -149,8 +157,8 @@ void Dungeon::handleMovement() {
                 break;
             case 'C':
             case 'c':
-                if (!currentRoom->getupRoom()) {
-                    cout<<"Invalid option.\n\n";
+                if (!currentRoom->getleftRoom()) {
+                    cout<<"\e[0;31mInvalid option.\n\n\e[0m";
                     valid = false;
                 }
                 else {
@@ -160,8 +168,8 @@ void Dungeon::handleMovement() {
                 break;
             case 'D':
             case 'd':
-                if (!currentRoom->getdownRoom()) {
-                    cout<<"Invalid option.\n\n";
+                if (!currentRoom->getrightRoom()) {
+                    cout<<"\e[0;31mInvalid option.\n\n\e[0m";
                     valid = false;
                 }
                 else {
@@ -170,7 +178,7 @@ void Dungeon::handleMovement() {
                 }
                 break;
             default: {
-                cout<<"Invalid option.\n\n";
+                cout<<"\e[0;31mInvalid option.\n\n\e[0m";
                 valid = false;
             } break;
         }
@@ -183,24 +191,25 @@ void Dungeon::chooseAction() {
     string script = "Select your action:\nA: Move\nB: Check status\n";
     switch (currentRoom->getRoomType()) {
         case 0:
-            script += "D: Save to File";
+            script += "D: Save to File\n";
             break;
         case 1:
-            script += "C: Open a chest\nD: Save to File";
+            script += "C: Open a chest\nD: Save to File\n";
             break;
         case 2:
-            script += "C: Fight with" + currentRoom->getResident()->getName() + "\nD: Save to File";
+            script += "C: Fight with " + currentRoom->getResident()->getName() + "\nD: Save to File\n";
             break;
         case 3:
-            script += "C: Talk to" + currentRoom->getResident()->getName() + "\nD: Save to File";
+            script += "C: Talk to " + currentRoom->getResident()->getName() + "\nD: Save to File\n";
             break;
     }
 
     while (true) {
         cout<<script;
         char action; cin >> action;
+        cout<<"\n";
         if (cin.fail()) {
-            cout<<"Invalid option.\n\n";
+            cout<<"\e[0;31mInvalid option.\n\n\e[0m";
             continue;
         }
         bool valid = true;
@@ -216,18 +225,20 @@ void Dungeon::chooseAction() {
             case 'C':
             case 'c':
                 if (currentRoom->getRoomType() == 0) {
-                    cout<<"Invalid option.\n\n";
+                    cout<<"\e[0;31mInvalid option.\n\n\e[0m";
                     valid = false;
                 }
                 else currentRoom->getResident()->triggerEvent(&player);
                 break;
             default: {
-                cout<<"Invalid option.\n\n";
+                cout<<"\e[0;31mInvalid option.\n\n\e[0m";
                 valid = false;
             } break;
         }
+
         if (valid) break;
     }
+
 }
 
 void Dungeon::runDungeon() {
