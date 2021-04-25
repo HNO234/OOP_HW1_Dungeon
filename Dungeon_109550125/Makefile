@@ -9,7 +9,7 @@ Dungeon: $(OBJS)
 	g++ $(CFLAGS) -o $@ -c $<
 
 clean:
-	rm Dungeon *.o *.d
+	rm Dungeon *.o *.d *.h.gch
 
 .PHONY: Dungeon clean
 
