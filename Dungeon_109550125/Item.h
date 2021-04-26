@@ -27,8 +27,6 @@ public:
     void setPrice(int aPrice) { price = aPrice; }
     void setAttack(int anAttack) { attack = anAttack; }
     void setDefense(int aDefense) { defense = aDefense; }
-
-    bool triggerEvent(Object* player) { return true; }
 };
 
 #endif // ITEM_H_INCLUDED

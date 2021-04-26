@@ -21,7 +21,7 @@ public:
     void setScript(string aScript) { script = aScript; }
     string getScript() { return script; }
 
-    bool triggerEvent(Object* player);
+    bool triggerEvent(GameCharacter* player);
 };
 
 

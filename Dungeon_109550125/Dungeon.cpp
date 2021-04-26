@@ -69,8 +69,8 @@ void Dungeon::createMap() {
             Chest* chest = new Chest("Chests","Which chest would you like to open?");
             rooms[X][Y].setGameCharacter(chest);
 
-            chest->putItem(Item("Sword 1",0,50,0,0));
-            chest->putItem(Item("Snake",0,-10,0,0));
+            chest->putItem(Item("Sword 1 (Attack +50)",0,50,0,0));
+            chest->putItem(Item("Snake (Attack -10)",0,-10,0,0));
             chest->putItem(Item("Money",0,0,0,-(rng()%500 + 100) ));
         }
     }
@@ -194,10 +194,14 @@ void Dungeon::chooseAction() {
             script += "D: Save to File\n";
             break;
         case 1:
-            script += "C: Open a chest\nD: Save to File\n";
+            if (currentRoom->getResident()->getObjectsSize())
+                script += "C: Open a chest\n";
+            script += "D: Save to File\n";
             break;
         case 2:
-            script += "C: Fight with " + currentRoom->getResident()->getName() + "\nD: Save to File\n";
+            if (currentRoom->getResident()->getHP() > 0)
+                script += "C: Fight with " + currentRoom->getResident()->getName() + "\n";
+            script += "D: Save to File\n";
             break;
         case 3:
             script += "C: Talk to " + currentRoom->getResident()->getName() + "\nD: Save to File\n";

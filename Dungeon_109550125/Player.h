@@ -25,7 +25,8 @@ public:
     Room* getPreviousRoom() { return previousRoom; }
 
     void showStatus ();
-    bool triggerEvent(Object* player) { return true; }
+    void Retreat() { std::swap(currentRoom,previousRoom); }
+    bool triggerEvent(GameCharacter* player) { return true; }
 };
 
 #endif // PLAYER_H_INCLUDED

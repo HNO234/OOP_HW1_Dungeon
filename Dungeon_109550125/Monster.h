@@ -14,7 +14,7 @@ public:
     Monster();
     Monster(string aName,int amaxHP,int anAttack,int aDefense,int aMoney);
 
-    bool triggerEvent(Object* player);
+    bool triggerEvent(GameCharacter* player);
 };
 
 

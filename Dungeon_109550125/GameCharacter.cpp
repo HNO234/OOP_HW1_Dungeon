@@ -23,3 +23,8 @@ void GameCharacter::removeItem(Item item) {
         objects.pop_back();
     }
 }
+
+int GameCharacter::takeDamage(int anAttack) {
+    HP -= max(anAttack-defense,0);
+    return max(anAttack-defense,0);
+}

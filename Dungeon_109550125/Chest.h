@@ -2,6 +2,9 @@
 #define CHEST_H_INCLUDED
 
 #include <string>
+#include <random>
+#include <chrono>
+#include <cctype>
 #include "GameCharacter.h"
 #include "Player.h"
 
@@ -18,7 +21,7 @@ public:
     void setScript(string aScript) { script = aScript; }
     string getScript() { return script; }
 
-    bool triggerEvent(Object* player);
+    bool triggerEvent(GameCharacter* player);
 };
 
 

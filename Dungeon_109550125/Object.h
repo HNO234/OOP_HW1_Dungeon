@@ -18,8 +18,6 @@ public:
     void setTag(string aTag);
     string getName();
     string getTag();
-
-    virtual bool triggerEvent(Object* player) = 0;
-};  
+};
 
 #endif // OBJECT_H_INCLUDED
