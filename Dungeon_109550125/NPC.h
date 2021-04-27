@@ -8,7 +8,6 @@
 #include "Player.h"
 
 using string = std::string;
-#define vector std::vector
 
 class NPC: public GameCharacter {
 private:

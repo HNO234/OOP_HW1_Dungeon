@@ -17,6 +17,7 @@ protected:
 public:
     Player();
     Player(string aName, int anAttack, int aDefense, int aMoney);
+    Player(string aName, int aHP,int amaxHP, int anAttack, int aDefense, int aMoney);
 
     /* Setters & Getters */
     void setCurrentRoom(Room* aCurrentRoom) { currentRoom = aCurrentRoom; }

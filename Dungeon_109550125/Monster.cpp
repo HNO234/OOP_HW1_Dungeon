@@ -6,6 +6,9 @@ Monster::Monster(): GameCharacter() {}
 Monster::Monster(string aName,int amaxHP,int anAttack,int aDefense, int aMoney):
     GameCharacter(aName, "Monster", amaxHP, amaxHP, anAttack, aDefense, aMoney) {}
 
+Monster::Monster(string aName,int aHP, int amaxHP,int anAttack,int aDefense, int aMoney):
+        GameCharacter(aName, "Monster", aHP, amaxHP, anAttack, aDefense, aMoney) {}
+
 bool Monster::triggerEvent(GameCharacter* player) {
     while (getHP() > 0 && player->getHP() > 0) {
         cout<<"Choose your action:\nA: Attack!\nB: Retreat!\n";

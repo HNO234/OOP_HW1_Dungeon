@@ -1,5 +1,4 @@
 #include "Dungeon.h"
-#include <typeinfo>
 using namespace std;
 
 Dungeon::Dungeon() {
@@ -25,6 +24,7 @@ void Dungeon::linkingRooms() {
 
     for (int i=0;i<4;i++)
         for (int j=0;j<3;j++) {
+            rooms[i][j].setIndex(i*3+j);
             if (i-1>=0) rooms[i][j].setupRoom(&rooms[i-1][j]);
             if (i+1<4) rooms[i][j].setdownRoom(&rooms[i+1][j]);
             if (j-1>=0) rooms[i][j].setleftRoom(&rooms[i][j-1]);
@@ -98,7 +98,6 @@ void Dungeon::createMap() {
 }
 
 bool Dungeon::checkGameLogic() {
-    //cout<<player.getHP()<<'\n';
     if (player.getHP() <= 0) {
         cout<< "You lose. :(\n";
         return false;
@@ -111,8 +110,40 @@ bool Dungeon::checkGameLogic() {
 }
 
 void Dungeon::initGame() {
-    createMap();
-    createPlayer();
+    string script = "Would you like to load previous data?\nA: Yes.\nB: No. Start a new game.\n";
+
+    while (true) {
+        cout<<script;
+        char action; cin >> action;
+        cout<<'\n';
+        if (cin.fail()) {
+            cout<<"\e[0;31mInvalid option.\n\n\e[0m";
+            continue;
+        }
+        bool valid = true;
+        switch (action) {
+            case 'A':
+            case 'a':
+                {
+                    linkingRooms();
+                    Record record;
+                    valid = record.load(rooms,player);
+                }
+                break;
+            case 'B':
+            case 'b':
+                {
+                    createMap();
+                    createPlayer();
+                }
+                break;
+            default: {
+                cout<<"\e[0;31mInvalid option.\n\n\e[0m";
+                valid = false;
+            } break;
+        }
+        if (valid) break;
+    }
 }
 
 void Dungeon::handleMovement() {
@@ -233,6 +264,13 @@ void Dungeon::chooseAction() {
                     valid = false;
                 }
                 else currentRoom->getResident()->triggerEvent(&player);
+                break;
+            case 'D':
+            case 'd':
+                {
+                    Record record;
+                    record.record(rooms,player);
+                }
                 break;
             default: {
                 cout<<"\e[0;31mInvalid option.\n\n\e[0m";

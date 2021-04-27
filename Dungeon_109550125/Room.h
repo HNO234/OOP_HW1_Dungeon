@@ -6,7 +6,6 @@
 #include <algorithm>
 
 using string = std::string;
-#define vector std::vector
 
 class Room {
 private:
@@ -19,12 +18,14 @@ private:
     2: Room of monster
     3: Room of NPC */
     int roomType;
+    int index;
     GameCharacter* resident;
 public:
     Room();
-    Room(int aroomType);
+    Room(int aroomType,int index);
 
     /* Setters & Getters */
+    void setIndex (int anIndex) { index = anIndex; }
     void setRoomType (int aRoomType) { roomType = aRoomType; }
     void setGameCharacter (GameCharacter* aResident) { resident = aResident; }
     void setupRoom (Room* aUpRoom) { upRoom = aUpRoom; }
@@ -32,11 +33,13 @@ public:
     void setleftRoom (Room* aleftRoom) { leftRoom = aleftRoom; }
     void setrightRoom (Room* arightRoom) { rightRoom = arightRoom; }
     int getRoomType () { return roomType; }
+    int getIndex() { return index; }
     GameCharacter* getResident () { return resident; }
     Room* getupRoom () { return upRoom; }
     Room* getdownRoom () { return downRoom; }
     Room* getleftRoom () { return leftRoom; }
     Room* getrightRoom () { return rightRoom; }
+
 };
 
 #endif //ROOM_H_INCLUDED

@@ -11,6 +11,7 @@
 #include "NPC.h"
 #include "Chest.h"
 #include "Room.h"
+#include "Record.h"
 
 using namespace std;
 

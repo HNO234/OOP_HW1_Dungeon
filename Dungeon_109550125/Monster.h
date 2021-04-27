@@ -13,6 +13,7 @@ private:
 public:
     Monster();
     Monster(string aName,int amaxHP,int anAttack,int aDefense,int aMoney);
+    Monster(string aName, int aHP, int amaxHP,int anAttack,int aDefense,int aMoney);
 
     bool triggerEvent(GameCharacter* player);
 };
