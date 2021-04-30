@@ -32,7 +32,7 @@ bool Chest::triggerEvent(GameCharacter* player) {
         }
 
         player->putItem(objects[v[option - 'a']]);
-        cout<<"You got " << objects[v[option - 'a']].getName() <<"!\n";
+        cout<<"\e[0;32mYou got " << objects[v[option - 'a']].getName() <<"!\n\e[0m";
         removeItem(objects[v[option - 'a']]);
         break;
     }
