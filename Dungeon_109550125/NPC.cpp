@@ -10,7 +10,7 @@ bool NPC::triggerEvent(GameCharacter* player) {
     int numObjects = getObjectsSize();
 
     while (true) {
-        cout << script << "\n";
+        cout << "\e[0;36m" << script << "\n\e[0m";
         for (int i=0;i<numObjects;i++) {
             cout<<(char)('A'+i) << ": " << objects[i].getName() <<'\n';
         }
@@ -28,7 +28,7 @@ bool NPC::triggerEvent(GameCharacter* player) {
         }
 
         if (option - 'a' == numObjects) {
-            cout<<"Thank you.\n\n";
+            cout<<"\e[0;32mThank you.\n\n\e[0m";
             break;
         }
         if (player->getMoney() < objects[option - 'a'].getPrice()) {
@@ -37,7 +37,7 @@ bool NPC::triggerEvent(GameCharacter* player) {
         }
 
         player->putItem(objects[option - 'a']);
-        cout<<"You got " << objects[option - 'a'].getName() <<"!\n";
+        cout<<"\e[0;32mYou got " << objects[option - 'a'].getName() <<"!\n\e[0m";
         break;
     }
     return true;

@@ -11,7 +11,7 @@ Monster::Monster(string aName,int aHP, int amaxHP,int anAttack,int aDefense, int
 
 bool Monster::triggerEvent(GameCharacter* player) {
     while (getHP() > 0 && player->getHP() > 0) {
-        cout<<"Choose your action:\nA: Attack!\nB: Retreat!\n";
+        cout<<"\e[0;36mChoose your action:\e[0m\nA: Attack!\nB: Retreat!\n";
 
         char option; cin >> option;
         if (cin.fail() || !isalpha(option)) {
@@ -25,15 +25,15 @@ bool Monster::triggerEvent(GameCharacter* player) {
         }
 
         if (option == 'a') {
-            cout<<"Your attack does "<< takeDamage(player->getAttack()) << " damage.\n";
+            cout<<"\e[0;36mYour attack does "<< takeDamage(player->getAttack()) << " damage.\n\e[0m";
             if (getHP() <= 0) {
-                cout<< "You beat " << getName() <<"!\n";
-                cout<< "You now have " << player->getHP() <<"HP.\n";
+                cout<< "\e[0;32mYou beat " << getName() <<"!\n\e[0m";
+                cout<< "\e[0;36mYou now have " << player->getHP() <<"HP.\n\e[0m";
             }
             else {
-                cout<<getName()<<"'s attack does "<< player->takeDamage(getAttack()) <<" damage.\n";
+                cout<<"\e[0;36m"<<getName()<<"'s attack does "<< player->takeDamage(getAttack()) <<" damage.\n\e[0m";
                 if (player->getHP() > 0) {
-                    cout<< "You now have " << player->getHP() <<"HP.\n";
+                    cout<< "\e[0;36mYou now have " << player->getHP() <<"HP.\n\e[0m";
                 }
             }
         }

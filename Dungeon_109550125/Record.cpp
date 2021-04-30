@@ -117,7 +117,7 @@ void Record::record(Room** rooms, Player &player) {
     }
     recordRoom(rooms,outStream);
     recordPlayer(player,outStream);
-    cout<<"Saved!\n";
+    cout<<"\e[0;32mSaved!\n\e[0m";
 
     outStream.close();
 }

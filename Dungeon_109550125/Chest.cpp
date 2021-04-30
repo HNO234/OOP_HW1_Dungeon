@@ -15,7 +15,7 @@ bool Chest::triggerEvent(GameCharacter* player) {
     shuffle(v.begin(), v.end(), rng);
 
     while (true) {
-        cout << script << "\n";
+        cout << "\e[0;36m" << script << "\n\e[0m";
         for (int i=0;i<numObjects;i++) {
             cout<<(char)('A'+i) << ": " << "Mystery Chest " << i+1 <<'\n';
         }

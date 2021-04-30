@@ -7,7 +7,7 @@ Dungeon::Dungeon() {
 }
 
 void Dungeon::createPlayer() {
-    cout << "Enter your name: ";
+    cout << "\e[0;36mEnter your name: \e[0m";
     string playerName; cin >> playerName;
     player = Player(playerName, 25, 0, 50);
     player.setCurrentRoom(&rooms[0][0]);
@@ -99,18 +99,18 @@ void Dungeon::createMap() {
 
 bool Dungeon::checkGameLogic() {
     if (player.getHP() <= 0) {
-        cout<< "You lose. :(\n";
+        cout<< "\e[0;31mYou lose. :(\n\e[0m";
         return false;
     }
     if (rooms[3][2].getResident()->getHP() <= 0) {
-        cout<< "You win. :D\n";
+        cout<< "\e[0;32mYou win. :D\n\e[0m";
         return false;
     }
     return true;
 }
 
 void Dungeon::initGame() {
-    string script = "Would you like to load previous data?\nA: Yes.\nB: No. Start a new game.\n";
+    string script = "\e[0;36mWould you like to load previous data?\n\e[0mA: Yes.\nB: No. Start a new game.\n";
 
     while (true) {
         cout<<script;
@@ -148,7 +148,7 @@ void Dungeon::initGame() {
 
 void Dungeon::handleMovement() {
     #define currentRoom player.getCurrentRoom()
-    string script = "Where do you want to go?\n";
+    string script = "\e[0;36mWhere do you want to go?\n\e[0m";
     if (currentRoom -> getupRoom()) script += "A: Go up\n";
     if (currentRoom -> getdownRoom()) script += "B: Go down\n";
     if (currentRoom -> getleftRoom()) script += "C: Go left\n";
@@ -219,7 +219,7 @@ void Dungeon::handleMovement() {
 
 void Dungeon::chooseAction() {
     #define currentRoom player.getCurrentRoom()
-    string script = "Select your action:\nA: Move\nB: Check status\n";
+    string script = "\e[0;36mSelect your action:\e[0m\nA: Move\nB: Check status\n";
     switch (currentRoom->getRoomType()) {
         case 0:
             script += "D: Save to File\n";
@@ -285,7 +285,7 @@ void Dungeon::chooseAction() {
 
 void Dungeon::runDungeon() {
     initGame();
-    cout<<"Welcome back to the Dungeon!\n";
+    cout<<"\e[0;32mWelcome back to the Dungeon!\n\e[0m";
     while (true) {
         chooseAction();
         if (!checkGameLogic()) break;

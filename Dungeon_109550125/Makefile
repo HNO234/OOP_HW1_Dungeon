@@ -3,7 +3,7 @@ OBJS = main.o Dungeon.o Monster.o NPC.o Chest.o \
 CFLAGS = -MD
 
 Dungeon: $(OBJS)
-	g++ $(OBJS) -o Dungeon -fsanitize=address -fsanitize=undefined
+	g++ $(OBJS) -o Dungeon
 
 %.o: %.cpp
 	g++ $(CFLAGS) -o $@ -c $<
